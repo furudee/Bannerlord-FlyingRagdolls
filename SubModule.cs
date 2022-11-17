@@ -4,12 +4,12 @@ using HarmonyLib;
 namespace FlyingRagdolls
 
 {
-    public class SubModule : MBSubModuleBase
+   public class SubModule : MBSubModuleBase
     {
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
-            new Harmony("mod.bannerlord.whatever").PatchAll();
+            new Harmony("mod.bannerlord.FlyingRagdolls").PatchAll();
         }
     }
 }

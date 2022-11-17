@@ -35,9 +35,11 @@
     <OutputPath>E:\gaem\Mount and Blade II Bannerlord\Modules\FlyingRagdolls\bin\Win64_Shipping_Client\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>E:\gaem\Mount and Blade II Bannerlord\Modules\FlyingRagdolls\bin\Win64_Shipping_Client\</OutputPath>
@@ -73,44 +75,35 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Lib.Harmony.2.2.1\lib\net472\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony">
+      <HintPath>E:\gaem\Mount and Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MCMv4, Version=4.7.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\Bannerlord.MCM.4.7.1\lib\net472\MCMv4.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="MCMv5">
+      <HintPath>E:\gaem\Mount and Blade II Bannerlord\Modules\Bannerlord.MBOptionScreen\bin\Win64_Shipping_Client\MCMv5.dll</HintPath>
     </Reference>
-    <Reference Include="TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="TaleWorlds.Core">
       <HintPath>E:\gaem\Mount and Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="TaleWorlds.DotNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="TaleWorlds.DotNet">
       <HintPath>E:\gaem\Mount and Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.DotNet.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="TaleWorlds.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="TaleWorlds.Library">
       <HintPath>E:\gaem\Mount and Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Library.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="TaleWorlds.MountAndBlade">
       <HintPath>E:\gaem\Mount and Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="TaleWorlds.ObjectSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="TaleWorlds.ObjectSystem">
       <HintPath>E:\gaem\Mount and Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <PackageReference Include="Bannerlord.MCM" Version="4.3.16" IncludeAssets="compile" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE.md" />

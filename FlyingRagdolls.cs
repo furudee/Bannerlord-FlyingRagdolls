@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
-using MCM.Abstractions.Settings.Base.Global;
+using MCM.Abstractions.Base.Global;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -19,22 +19,42 @@ namespace FlyingRagdolls
         static bool Prefix(ref Blow b, ref Agent.KillInfo overrideKillInfo, Agent __instance)
         {
             // proceed to original method
+            if (!settings.Enabled) return true;
+            // proceed to original method
             if (overrideKillInfo == Agent.KillInfo.Javelin) return true;
+            // proceed to hooked method
             b.BaseMagnitude = 1000f;
             b.DamagedPercentage = 10f;
 
             // melee kills
-            if (b.WeaponRecord.Velocity == Vec3.Zero)   
+            if (b.WeaponRecord.Velocity == Vec3.Zero)
             {
                 b.WeaponRecord.Velocity = b.SwingDirection;
-                b.WeaponRecord.Velocity.z = Math.Abs((float)Math.Tan(settings.Angle * (Math.PI/180)) * (new Vec2(b.WeaponRecord.Velocity.x, b.WeaponRecord.Velocity.y)).Length);
-                b.WeaponRecord.Velocity *= settings.MeleeVelocityMultiplier;
+                if (settings.RandomAngle)
+                {
+                    b.WeaponRecord.Velocity.z = Math.Abs((float)Math.Tan(new Random().Next(1, 90) * (Math.PI / 180)) * (new Vec2(b.WeaponRecord.Velocity.x, b.WeaponRecord.Velocity.y)).Length);
+                }
+                else b.WeaponRecord.Velocity.z = Math.Abs((float)Math.Tan(settings.Angle * (Math.PI / 180)) * (new Vec2(b.WeaponRecord.Velocity.x, b.WeaponRecord.Velocity.y)).Length);
+            
+                if (settings.RandomVelocity)
+                {
+                    b.WeaponRecord.Velocity *= new Random().Next(0, 25000);
+                }
+                else b.WeaponRecord.Velocity *= settings.MeleeVelocityMultiplier;
             }
             // ranged and other kills
             else 
             {
-                b.WeaponRecord.Velocity.z = Math.Abs((float)Math.Tan(settings.Angle * (Math.PI / 180)) * (new Vec2(b.WeaponRecord.Velocity.x, b.WeaponRecord.Velocity.y)).Length);
-                b.WeaponRecord.Velocity *= settings.RangedVelocityMultiplier;
+                if (settings.RandomAngle)
+                {
+                    b.WeaponRecord.Velocity.z = Math.Abs((float)Math.Tan(new Random().Next(1, 90) * (Math.PI / 180)) * (new Vec2(b.WeaponRecord.Velocity.x, b.WeaponRecord.Velocity.y)).Length);
+                }
+                else b.WeaponRecord.Velocity.z = Math.Abs((float)Math.Tan(settings.Angle * (Math.PI / 180)) * (new Vec2(b.WeaponRecord.Velocity.x, b.WeaponRecord.Velocity.y)).Length);
+                if (settings.RandomVelocity)
+                {
+                    b.WeaponRecord.Velocity *= new Random().Next(0, 25000);
+                }
+                else b.WeaponRecord.Velocity *= settings.RangedVelocityMultiplier;
             }
 
             // edit blow with ballista bolt
